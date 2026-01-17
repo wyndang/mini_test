@@ -15,30 +15,17 @@
         :root {
             /* --- COLOR PALETTE --- */
             --bg-base: #050505;
-
-            /* Màu chủ đạo 1: Cam cháy (Giữ nguyên) */
             --primary-orange: #e65100;
             --primary-light: #ff9800;
-
-            /* Màu chủ đạo 2: Vàng kim (Mới - Dùng cho tiêu đề, điểm số, hộp quà) */
             --accent-gold: #ffd700;
-
-            /* Màu phụ trợ: Xanh ngọc (Mới - Dùng cho thông số, map active) */
-            --accent-teal: #00bfa5;
-
-            /* Màu cảnh báo: Đỏ đun */
+            --accent-teal: #ff7700;
             --accent-red: #d32f2f;
-
             --text-white: #eceff1;
             --text-gray: #b0bec5;
-
-            /* Kính tối màu & Border bo tròn nhiều hơn */
             --glass-bg: rgba(20, 15, 10, 0.85);
             --glass-border: 1px solid rgba(255, 215, 0, 0.15);
-            /* Viền vàng nhạt */
             --radius-md: 15px;
             --radius-lg: 25px;
-
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Lora', serif;
         }
@@ -51,12 +38,9 @@
 
         body {
             background-color: var(--bg-base);
-            /* --- CẤU TRÚC BACKGROUND: Overlay tối đè lên Ảnh --- */
             background-image:
                 linear-gradient(to bottom, rgba(10, 5, 0, 0.85), rgba(0, 0, 0, 0.95)),
-                /* THAY LINK ẢNH BACKGROUND CỦA BẠN Ở ĐÂY */
                 url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=2070&auto=format&fit=crop');
-
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -77,7 +61,6 @@
             font-weight: 700;
             letter-spacing: 2px;
             color: var(--accent-gold);
-            /* Đổi sang màu vàng kim */
             border-bottom: 1px solid rgba(255, 215, 0, 0.2);
             position: fixed;
             width: 100%;
@@ -93,7 +76,6 @@
             margin-top: 80px;
             flex: 1;
             padding: 40px 15%;
-            /* Padding gọn hơn chút */
             width: 100%;
             display: flex;
             justify-content: center;
@@ -200,7 +182,6 @@
             font-weight: 700;
             border: none;
             border-radius: 50px;
-            /* Bo tròn hẳn dạng viên thuốc */
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -242,6 +223,30 @@
             color: white;
         }
 
+        /* Nút quà tặng mới */
+        .btn-gift-next {
+            background: linear-gradient(135deg, #00c853, #64dd17);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 200, 83, 0.4);
+            animation: pulse 2s infinite;
+            display: none;
+            /* Mặc định ẩn */
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(0, 200, 83, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 200, 83, 0);
+            }
+        }
+
         /* --- Quiz Screen --- */
         #quiz-screen {
             flex-direction: row;
@@ -269,14 +274,12 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            /* Để đẩy nút xuống dưới */
             border-radius: var(--radius-md);
         }
 
         .question-header {
             font-family: var(--font-heading);
             color: var(--accent-teal);
-            /* Màu xanh ngọc cho header nhỏ */
             font-size: 1.3rem;
             margin-bottom: 20px;
             font-weight: 700;
@@ -290,7 +293,6 @@
             margin-bottom: 30px;
             color: var(--text-white);
             flex-grow: 1;
-            /* Đẩy options xuống */
         }
 
         .options-grid {
@@ -310,7 +312,6 @@
             font-size: 1.05rem;
             font-family: var(--font-body);
             border-radius: 12px;
-            /* Bo góc option */
             position: relative;
         }
 
@@ -320,7 +321,6 @@
             transform: translateX(5px);
         }
 
-        /* Kết quả */
         .option-btn.correct {
             background: rgba(0, 200, 83, 0.2) !important;
             border: 1px solid #00e676 !important;
@@ -331,6 +331,7 @@
             background: rgba(211, 47, 47, 0.2) !important;
             border: 1px solid #ff5252 !important;
             color: #ffcdd2;
+            opacity: 0.7;
         }
 
         /* Map */
@@ -381,7 +382,7 @@
             color: white;
         }
 
-        /* Nút điều khiển game (Bên phải) */
+        /* Controls */
         .game-controls {
             display: flex;
             flex-direction: column;
@@ -397,7 +398,7 @@
             font-size: 0.95rem;
         }
 
-        /* --- Gift Screen --- */
+        /* Gift & Summary & Modal CSS */
         #gift-screen {
             flex-direction: column;
             align-items: center;
@@ -417,7 +418,6 @@
             font-family: var(--font-heading);
             font-size: 2.2rem;
             color: var(--accent-teal);
-            /* Dùng màu xanh ngọc cho kết quả quà */
             height: 60px;
             margin: 20px 0;
             font-weight: 700;
@@ -433,7 +433,6 @@
         .blindbox {
             width: 90px;
             height: 110px;
-            /* Gradient Vàng Cam sang trọng */
             background: linear-gradient(135deg, #ffa000, #ff6f00);
             cursor: pointer;
             display: flex;
@@ -456,7 +455,6 @@
         }
 
         .blindbox::before {
-            /* Nơ trang trí */
             content: "🎁";
             position: absolute;
             font-size: 1rem;
@@ -473,7 +471,6 @@
 
         .blindbox.opened {
             background: #263238;
-            /* Màu xám tối khi mở */
             border-color: #37474f;
             box-shadow: none;
             cursor: default;
@@ -490,7 +487,6 @@
             filter: grayscale(100%);
         }
 
-        /* --- Summary Screen --- */
         #summary-screen {
             flex-direction: column;
             background: var(--glass-bg);
@@ -504,7 +500,6 @@
             font-family: var(--font-heading);
             font-size: 5rem;
             color: var(--accent-gold);
-            /* Điểm số màu vàng kim */
             margin: 10px 0;
             text-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
         }
@@ -527,7 +522,6 @@
             color: var(--accent-teal);
         }
 
-        /* --- Modal --- */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -579,7 +573,6 @@
             font-size: 1.1rem;
         }
 
-        /* Mobile Fixes */
         @media (max-width: 768px) {
             #welcome-screen {
                 flex-direction: column;
@@ -617,7 +610,29 @@
 
             .game-controls {
                 flex-direction: row;
+                flex-wrap: wrap;
             }
+        }
+        .btn-highlight {
+            background: linear-gradient(45deg, #ffd700, #ff8c00); /* Gradient Vàng sang Cam */
+            color: #000; /* Chữ màu đen đậm cho dễ đọc trên nền vàng */
+            font-weight: 800;
+            border: 2px solid #ffffff; /* Viền trắng làm nổi bật biên */
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); /* Đổ bóng phát sáng */
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            animation: pulse-gold 2s infinite; /* Hiệu ứng nhịp đập */
+            margin-top: 20px;
+        }
+        .btn-highlight:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            background: linear-gradient(45deg, #ffea00, #ff9800);
+        }
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 215, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
         }
     </style>
 </head>
@@ -635,7 +650,8 @@
             </div>
             <div class="welcome-content">
                 <h1>DÒNG CHẢY<br>PHƯƠNG ĐÔNG</h1>
-                <p class="subtitle">10 câu hỏi về những vấn đề nổi bật của các khu vực châu Á trước thế kỷ XXI và hiện nay</p>
+                <p class="subtitle">10 câu hỏi về những vấn đề nổi bật của các khu vực châu Á trước thế kỷ XXI và hiện
+                    nay</p>
                 <button class="btn btn-primary" onclick="startTest()">Bắt đầu ngay</button>
             </div>
         </div>
@@ -656,6 +672,9 @@
                 </div>
 
                 <div class="game-controls">
+                    <button id="btn-next-step" class="btn btn-gift-next" onclick="goToGift()">🎁 Nhận quà & Tiếp
+                        tục</button>
+
                     <button class="btn btn-primary" onclick="restartTest()">⟳ Chơi lại</button>
                     <button class="btn btn-danger" onclick="stopTest()">✕ Dừng lại</button>
                 </div>
@@ -668,7 +687,8 @@
             <div class="gift-result" id="gift-notification"></div>
             <div class="blindbox-grid" id="blindbox-container">
             </div>
-            <button class="btn btn-secondary" onclick="backToQuizFromGift()">Quay lại bài thi</button>
+        
+            <button class="btn btn-highlight" onclick="backToQuizFromGift()">➤ Quay lại bài thi</button>
         </div>
 
         <div id="summary-screen" class="screen">
@@ -695,7 +715,7 @@
         <div class="modal-box" id="modal-content">
             <div class="modal-title" id="modal-title"></div>
             <div class="modal-msg" id="modal-msg"></div>
-            <button id="modal-btn" class="btn"></button>
+            <div id="modal-actions" style="display: flex; gap: 10px; justify-content: center;"></div>
         </div>
     </div>
 
@@ -724,7 +744,7 @@
             "Chúc may mắn lần sau"
         ];
 
-        let shuffledGifts = []; // Mảng chứa quà sau khi shuffle cho phiên chơi hiện tại
+        let shuffledGifts = [];
 
         // --- BIẾN TRẠNG THÁI ---
         let currentQuestion = 0;
@@ -732,11 +752,11 @@
         let answersState = [];
         let blindboxState = [];
 
-        // Thời gian
+        // Thêm biến theo dõi số lần sai của câu hiện tại
+        let currentWrongAttempts = 0;
+
         let totalPlayTime = 0;
         let sessionStartTime;
-
-        // Cờ kiểm tra xem đã chọn quà cho câu hỏi hiện tại chưa
         let canPickGift = false;
 
         // DOM
@@ -747,8 +767,8 @@
             summary: document.getElementById('summary-screen')
         };
         const modal = document.getElementById('modal');
+        const btnNextStep = document.getElementById('btn-next-step');
 
-        // Helper: Shuffle Array
         function shuffle(array) {
             let currentIndex = array.length, randomIndex;
             let newArr = [...array];
@@ -768,17 +788,14 @@
         // --- GAME LOGIC ---
 
         function startTest() {
-            // Reset game state
             currentQuestion = 0;
             score = 0;
             totalPlayTime = 0;
             answersState = new Array(questions.length).fill(null);
             blindboxState = new Array(10).fill(false);
-
-            // Xáo trộn quà MỚI cho lượt chơi này
             shuffledGifts = shuffle(baseGifts);
-
             sessionStartTime = Date.now();
+
             showScreen('quiz');
             renderMap();
             loadQuestion(0);
@@ -798,11 +815,15 @@
 
         function loadQuestion(index) {
             currentQuestion = index;
-            document.getElementById('current-q-num').innerText = index + 1;
+            // Reset số lần sai cho câu mới
+            currentWrongAttempts = 0;
 
+            // Ẩn nút nhận quà/tiếp tục vì chưa trả lời đúng
+            btnNextStep.style.display = 'none';
+
+            document.getElementById('current-q-num').innerText = index + 1;
             const qData = questions[index];
             document.getElementById('question-text').innerText = qData.q;
-
             const optionsDiv = document.getElementById('options-container');
             optionsDiv.innerHTML = '';
 
@@ -816,35 +837,60 @@
                 if (isAnswered) {
                     btn.disabled = true;
                     if (idx === qData.correct) btn.classList.add('correct');
-                    else if (answersState[index] === false) {
-                        // Logic đơn giản: Nếu đã trả lời sai thì ko highlight nút sai cụ thể ở đây
-                        // nhưng nếu muốn có thể lưu userChoice vào mảng riêng
-                        btn.classList.add('disabled');
+                    else btn.classList.add('disabled');
+
+                    // Nếu load lại câu đã trả lời đúng, hiện nút đi tiếp
+                    if (answersState[index] === true) {
+                        btnNextStep.style.display = 'block';
                     }
                 } else {
-                    btn.onclick = () => checkAnswer(idx);
+                    btn.onclick = () => checkAnswer(idx, btn);
                 }
                 optionsDiv.appendChild(btn);
             });
             updateMap();
         }
 
-        function checkAnswer(selectedIndex) {
+        function checkAnswer(selectedIndex, btnElement) {
             const correctIndex = questions[currentQuestion].correct;
-            const options = document.querySelectorAll('.option-btn');
-
-            options.forEach(btn => btn.disabled = true);
 
             if (selectedIndex === correctIndex) {
-                score++;
+                // --- TRƯỜNG HỢP ĐÚNG ---
+
+                // Tính điểm dựa trên số lần sai
+                let pointsAdded = 0;
+                if (currentWrongAttempts === 0) {
+                    pointsAdded = 1;
+                } else if (currentWrongAttempts === 1) {
+                    pointsAdded = 0.5;
+                } else {
+                    pointsAdded = 0; // Sai 2 lần trở lên ko có điểm
+                }
+                score += pointsAdded;
+
+                // Cập nhật trạng thái
                 answersState[currentQuestion] = true;
-                options[selectedIndex].classList.add('correct');
-                setTimeout(() => showModal(true), 600);
+                btnElement.classList.add('correct');
+
+                // Disable tất cả các nút
+                const options = document.querySelectorAll('.option-btn');
+                options.forEach(b => b.disabled = true);
+
+                // Hiện nút "Tiếp tục" ở cột bên phải
+                btnNextStep.style.display = 'block';
+
+                // Hiển thị Modal chúc mừng
+                showSuccessModal(pointsAdded);
+
             } else {
-                answersState[currentQuestion] = false;
-                options[selectedIndex].classList.add('wrong');
-                options[correctIndex].classList.add('correct');
-                setTimeout(() => showModal(false), 600);
+                // --- TRƯỜNG HỢP SAI ---
+                currentWrongAttempts++;
+
+                // Chỉ visual báo sai và disable nút đó
+                btnElement.classList.add('wrong');
+                btnElement.disabled = true;
+
+                // KHÔNG HIỆN MODAL, để người dùng chọn lại ngay
             }
             updateMap();
         }
@@ -867,38 +913,51 @@
                 node.className = 'map-node';
                 if (i === currentQuestion) node.classList.add('active');
                 if (answersState[i] === true) node.classList.add('correct');
-                else if (answersState[i] === false) node.classList.add('wrong');
+                // Lưu ý: Logic mới không còn lưu trạng thái False vĩnh viễn cho map,
+                // vì người dùng chọn lại cho đến khi đúng.
             }
         }
 
         // --- MODAL ---
-        function showModal(isCorrect) {
+        function showSuccessModal(points) {
             const title = document.getElementById('modal-title');
             const msg = document.getElementById('modal-msg');
-            const btn = document.getElementById('modal-btn');
+            const actionsDiv = document.getElementById('modal-actions');
+
+            // Xóa nút cũ
+            actionsDiv.innerHTML = '';
+            // Ẩn nút đơn cũ nếu có
+            document.getElementById('modal-btn').style.display = 'none';
 
             modal.style.display = 'flex';
+            title.innerText = "CHÍNH XÁC!";
+            title.style.color = "#00e676";
 
-            if (isCorrect) {
-                title.innerText = "CHÍNH XÁC";
-                title.style.color = "#00e676";
-                msg.innerText = "Chúc mừng! Bạn được chọn 1 phần quà.";
-                btn.innerText = "MỞ QUÀ NGAY";
-                btn.className = "btn btn-primary";
-                btn.onclick = goToGift;
-            } else {
-                title.innerText = "TIẾC QUÁ";
-                title.style.color = "#ff5252";
-                msg.innerText = "Đáp án chưa chính xác.";
-                btn.innerText = "CÂU TIẾP THEO";
-                btn.className = "btn btn-secondary";
-                btn.onclick = closeAndNext;
-            }
+            let pointMsg = "";
+            if (points === 1) pointMsg = "Xuất sắc! Bạn đạt trọn vẹn 1 điểm.";
+            else if (points === 0.5) pointMsg = "Bạn đạt 0.5 điểm cho câu này.";
+            else pointMsg = "Tiếc quá, bạn không có điểm do sai quá 2 lần, nhưng đã trả lời đúng!";
+
+            msg.innerText = pointMsg;
+
+            // Tạo nút "Xem lại"
+            const btnReview = document.createElement('button');
+            btnReview.className = 'btn btn-secondary';
+            btnReview.innerText = "Xem lại câu hỏi";
+            btnReview.onclick = closeModal; // Chỉ đóng modal
+
+            // Tạo nút "Nhận quà"
+            const btnGift = document.createElement('button');
+            btnGift.className = 'btn btn-primary';
+            btnGift.innerText = "Đi nhận quà 🎁";
+            btnGift.onclick = goToGift;
+
+            actionsDiv.appendChild(btnReview);
+            actionsDiv.appendChild(btnGift);
         }
 
-        function closeAndNext() {
+        function closeModal() {
             modal.style.display = 'none';
-            nextQuestion();
         }
 
         function nextQuestion() {
@@ -911,12 +970,13 @@
 
         // --- GIFT LOGIC ---
         function goToGift() {
+            // Đóng modal nếu đang mở
+            closeModal();
+
             totalPlayTime += (Date.now() - sessionStartTime);
-            modal.style.display = 'none';
 
             // Cho phép chọn 1 quà
             canPickGift = true;
-
             showScreen('gift');
             renderBlindboxes();
             document.getElementById('gift-notification').innerText = "";
@@ -928,37 +988,30 @@
 
             for (let i = 0; i < 10; i++) {
                 const box = document.createElement('div');
-                // Nếu đã mở thì thêm class opened
                 let className = 'blindbox';
                 if (blindboxState[i]) className += ' opened';
-
-                // Nếu đang ở lượt chọn quà nhưng ô này đã mở từ câu trước -> disable
                 if (canPickGift && blindboxState[i]) className += ' disabled';
-                // Nếu đã chọn xong quà của lượt này -> disable tất cả các ô còn lại
                 if (!canPickGift) className += ' disabled';
 
                 box.className = className;
 
-                // Hiển thị số thứ tự 1-10
                 const numSpan = document.createElement('span');
                 numSpan.className = 'box-num';
-                numSpan.innerText = blindboxState[i] ? '' : (i + 1); // Nếu mở rồi thì ẩn số
+                numSpan.innerText = blindboxState[i] ? '' : (i + 1);
                 box.appendChild(numSpan);
 
-                // Nội dung quà (chỉ hiện khi đã mở)
                 if (blindboxState[i]) {
                     const content = document.createElement('div');
                     content.style.fontSize = "0.9rem";
                     content.style.fontWeight = "bold";
                     content.style.color = "#eceff1";
-                    content.innerText = shuffledGifts[i]; // Lấy nội dung từ mảng đã shuffle
+                    content.innerText = shuffledGifts[i];
                     box.appendChild(content);
                 }
 
                 if (!blindboxState[i] && canPickGift) {
                     box.onclick = () => openGift(i, box);
                 }
-
                 container.appendChild(box);
             }
         }
@@ -967,16 +1020,10 @@
             if (!canPickGift) return;
 
             blindboxState[index] = true;
-
-            // Hiển thị kết quả
             const reward = shuffledGifts[index];
             const noti = document.getElementById('gift-notification');
             noti.innerText = "Bạn nhận được: " + reward;
-
-            // Khóa quyền chọn quà tiếp theo
             canPickGift = false;
-
-            // Re-render để disable các ô khác
             renderBlindboxes();
         }
 
