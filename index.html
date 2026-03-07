@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hành Vi Đạo Đức - Nhóm 17</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            /* --- COLOR PALETTE (Cocoon / Nature Theme) --- */
+            --bg-base: #0a110a;
+            /* Đen ngả xanh lá đậm */
+
+            /* Màu chủ đạo 1: Xanh lá cây (Nature) */
+            --primary-orange: #2e7d32;
+            --primary-light: #4caf50;
+
+            /* Màu chủ đạo 2: Vàng tự nhiên / Nâu ấm */
+            --accent-gold: #ffca28;
+
+            /* Màu phụ trợ: Xanh bơ / Trà xanh */
+            --accent-teal: #aed581;
+
+            /* Màu cảnh báo: Đỏ cam */
+            --accent-red: #d32f2f;
+
+            --text-white: #f1f8e9;
+            --text-gray: #bcaaa4;
+
+            /* Kính tối màu & Border bo tròn */
+            --glass-bg: rgba(10, 20, 10, 0.85);
+            /* Nền kính xanh lá cực đậm */
+            --glass-border: 1px solid rgba(174, 213, 129, 0.2);
+            --radius-md: 15px;
+            --radius-lg: 25px;
+
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lora', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            /* --- BACKGROUND: Lá cây thiên nhiên (Thuần chay) --- */
+            background-image:
+                linear-gradient(to bottom, rgba(5, 15, 5, 0.85), rgba(0, 5, 0, 0.95)),
+                url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-white);
+            font-family: var(--font-body);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 20px;
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            border-bottom: 1px solid rgba(174, 213, 129, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(5, 15, 5, 0.95);
+            backdrop-filter: blur(10px);
+            text-transform: uppercase;
+        }
+
+        /* Container */
+        .main-container {
+            margin-top: 80px;
+            flex: 1;
+            padding: 40px 15%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media (max-width: 1400px) {
+            .main-container {
+                padding: 40px 8%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 20px 4%;
+                margin-top: 70px;
+            }
+        }
+
+        /* Screens Animation */
+        .screen {
+            display: none;
+            width: 100%;
+            animation: fadeIn 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Welcome Screen --- */
+        #welcome-screen {
+            flex-direction: row;
+            background: var(--glass-bg);
+            border: var(--glass-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+            min-height: 70vh;
+        }
+
+        .welcome-img {
+            flex: 1;
+            background-color: #000;
+            overflow: hidden;
+        }
+
+        .welcome-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+            transition: transform 5s ease;
+        }
+
+        #welcome-screen:hover .welcome-img img {
+            transform: scale(1.1);
+        }
+
+        .welcome-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            color: var(--accent-gold);
+            font-weight: 700;
+            line-height: 1.1;
+            text-shadow: 0 4px 15px rgba(255, 202, 40, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        /* Buttons Styling */
+        .btn {
+            padding: 14px 35px;
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-orange), var(--primary-light));
+            color: white;
+            box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-white);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-danger {
+            background: rgba(211, 47, 47, 0.2);
+            color: #ef9a9a;
+            border: 1px solid rgba(211, 47, 47, 0.5);
+        }
+
+        .btn-danger:hover {
+            background: rgba(211, 47, 47, 0.4);
+            color: white;
+        }
+
+        /* Nút quà tặng mới */
+        .btn-gift-next {
+            background: linear-gradient(135deg, #fbc02d, #ffeb3b);
+            color: #000;
+            box-shadow: 0 4px 15px rgba(251, 192, 45, 0.4);
+            animation: pulse 2s infinite;
+            display: none;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(251, 192, 45, 0.6);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(251, 192, 45, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(251, 192, 45, 0);
+            }
+        }
+
+        /* Nút nổi bật quay lại */
+        .btn-highlight {
+            background: linear-gradient(45deg, #aed581, #689f38);
+            color: #000;
+            font-weight: 800;
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 20px rgba(174, 213, 129, 0.5);
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            animation: pulse-gold 2s infinite;
+            margin-top: 20px;
+        }
+
+        .btn-highlight:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(174, 213, 129, 0.8);
+            background: linear-gradient(45deg, #c5e1a5, #7cb342);
+        }
+
+        @keyframes pulse-gold {
+            0% {
+                box-shadow: 0 0 0 0 rgba(174, 213, 129, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(174, 213, 129, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(174, 213, 129, 0);
+            }
+        }
+
+        /* --- Quiz Screen --- */
+        #quiz-screen {
+            flex-direction: row;
+            gap: 25px;
+            align-items: stretch;
+            min-height: 70vh;
+        }
+
+        .quiz-left {
+            flex: 7;
+            background: var(--glass-bg);
+            border: var(--glass-border);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            border-radius: var(--radius-md);
+        }
+
+        .quiz-right {
+            flex: 3;
+            background: var(--glass-bg);
+            border: var(--glass-border);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: var(--radius-md);
+        }
+
+        .question-header {
+            font-family: var(--font-heading);
+            color: var(--accent-teal);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .question-box {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            color: var(--text-white);
+            flex-grow: 1;
+        }
+
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option-btn {
+            padding: 18px 25px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.05rem;
+            font-family: var(--font-body);
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background: rgba(174, 213, 129, 0.1);
+            border-color: var(--accent-teal);
+            transform: translateX(5px);
+        }
+
+        .option-btn.correct {
+            background: rgba(129, 199, 132, 0.2) !important;
+            border: 1px solid #66bb6a !important;
+            color: #a5d6a7;
+        }
+
+        .option-btn.wrong {
+            background: rgba(211, 47, 47, 0.2) !important;
+            border: 1px solid #ff5252 !important;
+            color: #ffcdd2;
+            opacity: 0.7;
+        }
+
+        /* Map */
+        .map-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .map-node {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.4);
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .map-node.active {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+            background: rgba(255, 202, 40, 0.1);
+            box-shadow: 0 0 10px rgba(255, 202, 40, 0.2);
+        }
+
+        .map-node.correct {
+            background: #388e3c;
+            border-color: #388e3c;
+            color: white;
+        }
+
+        .map-node.wrong {
+            background: #c62828;
+            border-color: #c62828;
+            color: white;
+        }
+
+        /* Controls */
+        .game-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .game-controls .btn {
+            width: 100%;
+            font-size: 0.95rem;
+        }
+
+        /* Gift & Summary & Modal CSS */
+        #gift-screen {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #gift-screen h2 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255, 202, 40, 0.3);
+        }
+
+        .gift-result {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            color: var(--accent-teal);
+            height: 60px;
+            margin: 20px 0;
+            font-weight: 700;
+        }
+
+        .blindbox-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .blindbox {
+            width: 90px;
+            height: 110px;
+            background: linear-gradient(135deg, #66bb6a, #2e7d32);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+
+        .blindbox .box-num {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.9);
+            z-index: 2;
+        }
+
+        .blindbox::before {
+            content: "🎁";
+            position: absolute;
+            font-size: 1rem;
+            top: 5px;
+            right: 5px;
+            opacity: 0.5;
+        }
+
+        .blindbox:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(76, 175, 80, 0.4);
+            border-color: white;
+        }
+
+        .blindbox.opened {
+            background: #1b261b;
+            border-color: #2e3e2e;
+            box-shadow: none;
+            cursor: default;
+            transform: none;
+        }
+
+        .blindbox.opened .box-num {
+            color: #5c755c;
+        }
+
+        .blindbox.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+            filter: grayscale(100%);
+        }
+
+        #summary-screen {
+            flex-direction: column;
+            background: var(--glass-bg);
+            border: var(--glass-border);
+            padding: 50px 80px;
+            border-radius: var(--radius-lg);
+            max-width: 700px;
+        }
+
+        .score-big {
+            font-family: var(--font-heading);
+            font-size: 5rem;
+            color: var(--accent-gold);
+            margin: 10px 0;
+            text-shadow: 0 0 25px rgba(255, 202, 40, 0.5);
+        }
+
+        .stat-box {
+            font-size: 1.3rem;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+        }
+
+        .stat-value {
+            font-weight: 700;
+            color: var(--accent-teal);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-box {
+            background: #0f170f;
+            padding: 50px;
+            border: 2px solid var(--accent-gold);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 0 60px rgba(255, 202, 40, 0.15);
+            animation: popIn 0.3s;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .modal-msg {
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            #welcome-screen {
+                flex-direction: column;
+                height: auto;
+                padding-bottom: 30px;
+            }
+
+            .welcome-img {
+                height: 250px;
+                width: 100%;
+            }
+
+            #quiz-screen {
+                flex-direction: column;
+            }
+
+            .quiz-left,
+            .quiz-right {
+                width: 100%;
+                flex: auto;
+            }
+
+            .blindbox-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .map-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .game-controls {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>Nhóm 17 - Hành Vi Đạo Đức</header>
+
+    <div class="main-container">
+
+        <div id="welcome-screen" class="screen active">
+            <div class="welcome-img">
+                <img src="https://product.hstatic.net/200000551679/product/2_5aa3636979b64b9e85afbc3dcd4c09d8_1024x1024.jpg"
+                    alt="Cocoon Vegan Theme">
+            </div>
+            <div class="welcome-content">
+                <h1>VẺ ĐẸP<br>THUẦN CHAY</h1>
+                <p class="subtitle">Khám phá hành vi đạo đức, giá trị cốt lõi và định hướng phát triển của thương hiệu
+                    mỹ phẩm Cocoon Việt Nam.</p>
+                <button class="btn btn-primary" onclick="startTest()">Bắt đầu ngay</button>
+            </div>
+        </div>
+
+        <div id="quiz-screen" class="screen">
+            <div class="quiz-left">
+                <div class="question-header">CÂU HỎI <span id="current-q-num"
+                        style="color: white; font-size: 1.5em;">1</span> / 10</div>
+                <div class="question-box" id="question-text">Loading...</div>
+                <div class="options-grid" id="options-container">
+                </div>
+            </div>
+            <div class="quiz-right">
+                <div class="map-wrapper">
+                    <h3 style="font-family: var(--font-heading); color: var(--accent-gold);">Bản đồ câu hỏi</h3>
+                    <div class="map-grid" id="map-container">
+                    </div>
+                </div>
+
+                <div class="game-controls">
+                    <button id="btn-next-step" class="btn btn-gift-next" onclick="goToGift()">🎁 Nhận quà & Tiếp
+                        tục</button>
+
+                    <button class="btn btn-primary" onclick="restartTest()">⟳ Chơi lại</button>
+                    <button class="btn btn-danger" onclick="stopTest()">✕ Dừng lại</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="gift-screen" class="screen">
+            <h2>CHỌN QUÀ</h2>
+            <p style="color: var(--text-gray);">Chọn 1 con số may mắn (1-10)</p>
+            <div class="gift-result" id="gift-notification"></div>
+            <div class="blindbox-grid" id="blindbox-container">
+            </div>
+
+            <button class="btn btn-highlight" onclick="backToQuizFromGift()">➤ Quay lại bài thi</button>
+        </div>
+
+        <div id="summary-screen" class="screen">
+            <h2 style="font-family: var(--font-heading); color: white; margin-bottom: 20px;">TỔNG KẾT</h2>
+            <div class="score-big" id="final-score">0/10</div>
+
+            <div class="stat-box">
+                <span class="stat-label">Tổng điểm đạt được:</span>
+                <span class="stat-value" id="final-points" style="color: var(--accent-gold)">0</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">Tổng thời gian:</span>
+                <span class="stat-value" id="total-time">00:00</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">Trung bình/câu:</span>
+                <span class="stat-value" id="avg-time">00s</span>
+            </div>
+
+            <div style="margin-top: 40px; width: 100%;">
+                <button class="btn btn-primary" style="width: 100%;" onclick="startTest()">Chơi lại từ đầu</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="modal" class="modal-overlay">
+        <div class="modal-box" id="modal-content">
+            <div class="modal-title" id="modal-title"></div>
+            <div class="modal-msg" id="modal-msg"></div>
+            <div id="modal-actions" style="display: flex; gap: 10px; justify-content: center;"></div>
+            <button id="modal-btn" class="btn" style="display:none"></button>
+        </div>
+    </div>
+
+    <script>
+        // --- DỮ LIỆU CÂU HỎI MỚI (CHỦ ĐỀ COCOON & ĐẠO ĐỨC) ---
+        const questions = [
+            {
+                q: "PHẦN 1: Hành vi đạo đức trong tổ chức được hiểu là những hành động và quyết định phù hợp với yếu tố nào sau đây?",
+                options: [
+                    "Chỉ cần đúng quy định của pháp luật.",
+                    "Chuẩn mực đạo đức xã hội, giá trị cốt lõi doanh nghiệp và pháp luật.",
+                    "Mục tiêu lợi nhuận của ban lãnh đạo.",
+                    "Ý muốn cá nhân của nhân viên."
+                ],
+                correct: 1
+            },
+            {
+                q: "PHẦN 1: Tác động tích cực nào của hành vi đạo đức giúp nhân viên làm việc hiệu quả hơn?",
+                options: [
+                    "Giúp nhân viên có nhiều thời gian nghỉ ngơi hơn.",
+                    "Tạo áp lực để nhân viên làm việc nhanh hơn.",
+                    "Nâng cao động lực, sự hài lòng và cam kết gắn gắn bó với tổ chức.",
+                    "Giảm bớt các quy trình kiểm tra chất lượng."
+                ],
+                correct: 2
+            },
+            {
+                q: "PHẦN 1: Hậu quả nghiêm trọng nhất của hành vi phi đạo đức đối với nội bộ tổ chức là gì?",
+                options: [
+                    "Làm tăng chi phí quảng cáo.",
+                    "Suy giảm niềm tin của nhân viên vào tổ chức và lãnh đạo.",
+                    "Làm cho khách hàng phàn nàn nhiều hơn.",
+                    "Thay đổi giờ giấc làm việc của nhân viên."
+                ],
+                correct: 1
+            },
+            {
+                q: "PHẦN 2: Ý nghĩa cốt lõi của tên gọi \"Cocoon\" là gì?",
+                options: [
+                    "Một loại mỹ phẩm đắt tiền.",
+                    "\"Cái kén\" - nơi nuôi dưỡng, bảo vệ để tỏa sáng theo cách riêng.",
+                    "Sự mạnh mẽ và độc lập của phụ nữ.",
+                    "Một loại nguyên liệu từ thiên nhiên."
+                ],
+                correct: 1
+            },
+            {
+                q: "PHẦN 2: Giá trị \"Thuần chay\" (Vegan) của Cocoon buộc bộ phận nào phải tuân thủ nghiêm ngặt nhất?",
+                options: [
+                    "Bộ phận Kế toán và Hành chính.",
+                    "Bộ phận Bảo vệ và An ninh.",
+                    "Bộ phận Nghiên cứu – Phát triển (R&D), Thu mua và Sản xuất.",
+                    "Bộ phận Vận chuyển và Giao nhận."
+                ],
+                correct: 2
+            },
+            {
+                q: "PHẦN 2: Triết lý kinh doanh nào sau đây là kim chỉ nam cho mọi quyết định tại Cocoon?",
+                options: [
+                    "Lợi nhuận là ưu tiên hàng đầu trong mọi hoàn cảnh.",
+                    "Vẻ đẹp phải gắn liền với đạo đức và không gây hại môi trường/động vật.",
+                    "Chỉ tập trung vào các sản phẩm dành cho da dầu.",
+                    "Ưu tiên nguyên liệu nhập khẩu từ châu Âu."
+                ],
+                correct: 1
+            },
+            {
+                q: "PHẦN 3: Nhóm thuyết trình đề xuất Cocoon nên dùng phụ phẩm gì từ quả dừa để làm bao bì xanh?",
+                options: [
+                    "Nước dừa thừa.",
+                    "Cùi dừa không dùng hết.",
+                    "Vỏ dừa và xơ dừa để làm bao bì sinh học.",
+                    "Lá dừa khô."
+                ],
+                correct: 2
+            },
+            {
+                q: "PHẦN 3: Để tránh bão hòa giá trị \"Thuần chay\", nhóm đề xuất giải pháp thực tế nào để tăng niềm tin cho khách hàng?",
+                options: [
+                    "Thuê thêm nhiều người nổi tiếng quảng cáo.",
+                    "Giảm giá sản phẩm xuống mức thấp nhất.",
+                    "Tổ chức tour tham quan vùng nguyên liệu thực tế (Đắk Lắk, Hưng Yên...).",
+                    "Thay đổi logo sang màu sắc rực rỡ hơn."
+                ],
+                correct: 2
+            },
+            {
+                q: "PHẦN 3: Việc hợp tác với nông dân theo mô hình \"Thương mại công bằng\" (Fair trade) giúp Cocoon thể hiện tính cách gì?",
+                options: [
+                    "Tính bản sắc và tự hào dân tộc.",
+                    "Tính trách nhiệm xã hội và bền vững.",
+                    "Tính minh bạch trong giá cả.",
+                    "Cả A và B đều đúng."
+                ],
+                correct: 3
+            },
+            {
+                q: "PHẦN 3: Biểu tượng nào giúp nhắc nhở nhân viên về trách nhiệm xã hội trong mọi hoạt động tại Cocoon?",
+                options: [
+                    "Đồng phục của nhân viên.",
+                    "Thiết kế bao bì tối giản, thân thiện môi trường.",
+                    "Các giải thưởng kinh doanh của công ty.",
+                    "Số lượng sản phẩm bán ra mỗi tháng."
+                ],
+                correct: 1
+            }
+        ];
+
+        // --- CẤU HÌNH QUÀ TẶNG ---
+        const baseGifts = [
+            "6 Cục kẹo", "6 Cục kẹo", "6 Cục kẹo", "6 Cục kẹo",
+            "1 Chai tài lộc",
+            "6 Cục kẹo", "6 Cục kẹo",
+            "6 Cục kẹo",
+            "1 Bịch bánh",
+            "1 Bịch bánh"
+        ];
+
+        let shuffledGifts = [];
+
+        // --- BIẾN TRẠNG THÁI ---
+        let currentQuestion = 0;
+        let score = 0; // Điểm số thực tế (tối đa 10đ)
+        let correctAnswersCount = 0; // Số câu trả lời đúng (để hiển thị 10/10)
+        let answersState = [];
+        let blindboxState = [];
+        let currentWrongAttempts = 0;
+        let totalPlayTime = 0;
+        let sessionStartTime;
+        let canPickGift = false;
+
+        // DOM
+        const screens = {
+            welcome: document.getElementById('welcome-screen'),
+            quiz: document.getElementById('quiz-screen'),
+            gift: document.getElementById('gift-screen'),
+            summary: document.getElementById('summary-screen')
+        };
+        const modal = document.getElementById('modal');
+        const btnNextStep = document.getElementById('btn-next-step');
+
+        // --- ÂM THANH (S3 Server - Ổn định) ---
+        const soundCorrect = new Audio('https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/success.mp3');
+        const soundWrong = new Audio('https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/error.mp3');
+        const soundGift = new Audio('https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/success.mp3');
+
+        function playSound(audioObj) {
+            audioObj.currentTime = 0;
+            audioObj.play().catch(e => console.log("Sound error:", e));
+        }
+
+        function shuffle(array) {
+            let currentIndex = array.length, randomIndex;
+            let newArr = [...array];
+            while (currentIndex != 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [newArr[currentIndex], newArr[randomIndex]] = [newArr[randomIndex], newArr[currentIndex]];
+            }
+            return newArr;
+        }
+
+        function showScreen(name) {
+            Object.values(screens).forEach(s => s.classList.remove('active'));
+            screens[name].classList.add('active');
+        }
+
+        // --- GAME LOGIC ---
+
+        function startTest() {
+            currentQuestion = 0;
+            score = 0;
+            correctAnswersCount = 0;
+            totalPlayTime = 0;
+            answersState = new Array(questions.length).fill(null);
+            blindboxState = new Array(10).fill(false);
+            shuffledGifts = shuffle(baseGifts);
+            sessionStartTime = Date.now();
+
+            showScreen('quiz');
+            renderMap();
+            loadQuestion(0);
+        }
+
+        function restartTest() {
+            if (confirm("Bạn có chắc muốn chơi lại từ đầu không?")) {
+                startTest();
+            }
+        }
+
+        function stopTest() {
+            if (confirm("Bạn có chắc muốn dừng bài thi và quay về màn hình chính?")) {
+                showScreen('welcome');
+            }
+        }
+
+        function loadQuestion(index) {
+            currentQuestion = index;
+            currentWrongAttempts = 0;
+            btnNextStep.style.display = 'none';
+
+            document.getElementById('current-q-num').innerText = index + 1;
+            const qData = questions[index];
+            document.getElementById('question-text').innerText = qData.q;
+            const optionsDiv = document.getElementById('options-container');
+            optionsDiv.innerHTML = '';
+
+            const isAnswered = answersState[index] !== null;
+
+            qData.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = ["A. ", "B. ", "C. ", "D. "][idx] + opt;
+
+                if (isAnswered) {
+                    btn.disabled = true;
+                    if (idx === qData.correct) btn.classList.add('correct');
+                    else btn.classList.add('disabled');
+
+                    if (answersState[index] === true) {
+                        btnNextStep.style.display = 'block';
+                    }
+                } else {
+                    btn.onclick = () => checkAnswer(idx, btn);
+                }
+                optionsDiv.appendChild(btn);
+            });
+            updateMap();
+        }
+
+        function checkAnswer(selectedIndex, btnElement) {
+            const correctIndex = questions[currentQuestion].correct;
+
+            if (selectedIndex === correctIndex) {
+                // ĐÚNG
+                playSound(soundCorrect);
+
+                let pointsAdded = 0;
+                if (currentWrongAttempts === 0) pointsAdded = 1;
+                else if (currentWrongAttempts === 1) pointsAdded = 0.5;
+                else pointsAdded = 0;
+
+                score += pointsAdded;
+                correctAnswersCount++;
+                answersState[currentQuestion] = true;
+                btnElement.classList.add('correct');
+
+                const options = document.querySelectorAll('.option-btn');
+                options.forEach(b => b.disabled = true);
+
+                btnNextStep.style.display = 'block';
+                showSuccessModal(pointsAdded);
+
+            } else {
+                // SAI
+                playSound(soundWrong);
+                currentWrongAttempts++;
+                btnElement.classList.add('wrong');
+                btnElement.disabled = true;
+            }
+            updateMap();
+        }
+
+        function renderMap() {
+            const mapContainer = document.getElementById('map-container');
+            mapContainer.innerHTML = '';
+            for (let i = 0; i < questions.length; i++) {
+                const node = document.createElement('div');
+                node.className = 'map-node';
+                node.innerText = i + 1;
+                node.id = `map-node-${i}`;
+                mapContainer.appendChild(node);
+            }
+        }
+
+        function updateMap() {
+            for (let i = 0; i < questions.length; i++) {
+                const node = document.getElementById(`map-node-${i}`);
+                node.className = 'map-node';
+                if (i === currentQuestion) node.classList.add('active');
+                if (answersState[i] === true) node.classList.add('correct');
+            }
+        }
+
+        // --- MODAL ---
+        function showSuccessModal(points) {
+            const title = document.getElementById('modal-title');
+            const msg = document.getElementById('modal-msg');
+            const actionsDiv = document.getElementById('modal-actions');
+
+            actionsDiv.innerHTML = '';
+            document.getElementById('modal-btn').style.display = 'none';
+
+            modal.style.display = 'flex';
+            title.innerText = "CHÍNH XÁC!";
+            title.style.color = "#81c784";
+
+            let pointMsg = "";
+            if (points === 1) pointMsg = "Xuất sắc! Chúc mừng bạn đạt trọn vẹn 1 điểm.";
+            else if (points === 0.5) pointMsg = "Bạn đạt 0.5 điểm cho câu này.";
+            else pointMsg = "Bạn đã trả lời đúng (0đ do sai quá 2 lần).";
+
+            msg.innerText = pointMsg;
+
+            const btnReview = document.createElement('button');
+            btnReview.className = 'btn btn-secondary';
+            btnReview.innerText = "Xem lại câu hỏi";
+            btnReview.onclick = closeModal;
+
+            const btnGift = document.createElement('button');
+            btnGift.className = 'btn btn-primary';
+            btnGift.innerText = "Đi nhận quà 🎁";
+            btnGift.onclick = goToGift;
+
+            actionsDiv.appendChild(btnReview);
+            actionsDiv.appendChild(btnGift);
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                loadQuestion(currentQuestion + 1);
+            } else {
+                endGame();
+            }
+        }
+
+        // --- GIFT LOGIC ---
+        function goToGift() {
+            closeModal();
+            totalPlayTime += (Date.now() - sessionStartTime);
+
+            canPickGift = true;
+            showScreen('gift');
+            renderBlindboxes();
+            document.getElementById('gift-notification').innerText = "";
+        }
+
+        function renderBlindboxes() {
+            const container = document.getElementById('blindbox-container');
+            container.innerHTML = '';
+
+            for (let i = 0; i < 10; i++) {
+                const box = document.createElement('div');
+                let className = 'blindbox';
+                if (blindboxState[i]) className += ' opened';
+                if (canPickGift && blindboxState[i]) className += ' disabled';
+                if (!canPickGift) className += ' disabled';
+
+                box.className = className;
+
+                const numSpan = document.createElement('span');
+                numSpan.className = 'box-num';
+                numSpan.innerText = blindboxState[i] ? '' : (i + 1);
+                box.appendChild(numSpan);
+
+                if (blindboxState[i]) {
+                    const content = document.createElement('div');
+                    content.style.fontSize = "0.9rem";
+                    content.style.fontWeight = "bold";
+                    content.style.color = "#eceff1";
+                    content.innerText = shuffledGifts[i];
+                    box.appendChild(content);
+                }
+
+                if (!blindboxState[i] && canPickGift) {
+                    box.onclick = () => openGift(i, box);
+                }
+                container.appendChild(box);
+            }
+        }
+
+        function openGift(index, element) {
+            if (!canPickGift) return;
+
+            playSound(soundGift);
+
+            blindboxState[index] = true;
+            const reward = shuffledGifts[index];
+            const noti = document.getElementById('gift-notification');
+            noti.innerText = "Bạn nhận được: " + reward;
+            canPickGift = false;
+            renderBlindboxes();
+        }
+
+        function backToQuizFromGift() {
+            sessionStartTime = Date.now();
+            showScreen('quiz');
+            nextQuestion();
+        }
+
+        // --- END GAME ---
+        function endGame() {
+            if (screens.quiz.classList.contains('active')) {
+                totalPlayTime += (Date.now() - sessionStartTime);
+            }
+
+            showScreen('summary');
+            document.getElementById('final-score').innerText = `${correctAnswersCount}/${questions.length}`;
+            document.getElementById('final-points').innerText = `${score} điểm`;
+
+            const seconds = Math.floor(totalPlayTime / 1000);
+            const minutes = Math.floor(seconds / 60);
+            const remainSeconds = seconds % 60;
+
+            document.getElementById('total-time').innerText =
+                `${minutes.toString().padStart(2, '0')}:${remainSeconds.toString().padStart(2, '0')}`;
+
+            const avg = (seconds / questions.length).toFixed(1);
+            document.getElementById('avg-time').innerText = avg + "s";
+        }
+
+    </script>
+</body>
+
+</html>
